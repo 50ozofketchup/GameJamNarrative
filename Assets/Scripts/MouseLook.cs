@@ -1,10 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Attach this script to your Camera (child of the Player).
-/// The camera handles vertical (X-axis) look.
-/// The player body handles horizontal (Y-axis) rotation.
-/// </summary>
+
 public class MouseLook : MonoBehaviour
 {
     [Header("Sensitivity")]

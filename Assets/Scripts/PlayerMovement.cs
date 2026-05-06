@@ -2,56 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Attach this script to your Player GameObject.
-/// Requires a CharacterController component on the same GameObject.
-/// </summary>
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    // -------------------------------------------------------------------------
-    // KEYBINDINGS
-    // -------------------------------------------------------------------------
-    // To add new keybinds later, just add a new [SerializeField] KeyCode below
-    // and use it in a new method or inside Update().
 
     [Header("Keybindings")]
     [SerializeField] private KeyCode sprintKey = KeyCode.LeftShift;
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [SerializeField] private KeyCode crouchKey = KeyCode.LeftControl;
-    // Example of how to add more later:
-    // [SerializeField] private KeyCode interactKey = KeyCode.E;
-    // [SerializeField] private KeyCode rollKey     = KeyCode.Q;
-
-    // -------------------------------------------------------------------------
+    
     // FEATURE TOGGLES
-    // -------------------------------------------------------------------------
-
+  
     [Header("Feature Toggles")]
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canJump = true;
     [SerializeField] private bool canCrouch = true;
 
-    // -------------------------------------------------------------------------
     // MOVEMENT SETTINGS
-    // -------------------------------------------------------------------------
 
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float sprintSpeed = 9f;
 
-    // -------------------------------------------------------------------------
     // JUMP SETTINGS
-    // -------------------------------------------------------------------------
 
     [Header("Jump")]
     [SerializeField] private float jumpHeight = 2f;
     // How fast the player falls after jumping (higher = snappier, less floaty)
     [SerializeField] private float fallMultiplier = 2.5f;
 
-    // -------------------------------------------------------------------------
     // CROUCH SETTINGS
-    // -------------------------------------------------------------------------
 
     [Header("Crouch")]
     [SerializeField] private float crouchHeight = 1f;   // CharacterController height while crouching
@@ -59,27 +39,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchSpeed = 2.5f;
     [SerializeField] private float crouchTransitionSpeed = 8f; // How fast to lerp between heights
 
-    // -------------------------------------------------------------------------
-    // GRAVITY
-    // -------------------------------------------------------------------------
+     // GRAVITY
 
     [Header("Gravity")]
     // Unity's default gravity is -9.81, but bumping it feels better for games
     [SerializeField] private float gravity = -20f;
 
-    // -------------------------------------------------------------------------
     // GROUND CHECK
-    // -------------------------------------------------------------------------
-
+ 
     [Header("Ground Check")]
-    // Assign an empty child GameObject placed at the very bottom of your player
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundCheckRadius = 0.3f;
     [SerializeField] private LayerMask groundMask;
 
-    // -------------------------------------------------------------------------
     // PRIVATE STATE
-    // -------------------------------------------------------------------------
 
     private CharacterController _controller;
     private Vector3 _velocity;          // Tracks vertical (gravity/jump) velocity
@@ -87,9 +60,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isCrouching;
     private float _targetHeight;        // The height we are lerping towards
 
-    // -------------------------------------------------------------------------
     // UNITY LIFECYCLE
-    // -------------------------------------------------------------------------
 
     private void Awake()
     {
@@ -104,16 +75,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (canJump) HandleJump();
         if (canCrouch) HandleCrouch();
-        if (canSprint) { /* Sprint is evaluated inside HandleMovement */ }
+        if (canSprint) {  }
 
         ApplyGravity();
         HandleCrouchTransition();
     }
 
-    // -------------------------------------------------------------------------
     // GROUND CHECK
-    // -------------------------------------------------------------------------
-
+ 
     private void CheckGround()
     {
         // Cast a small sphere at the groundCheck position — if it overlaps the
@@ -132,9 +101,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // -------------------------------------------------------------------------
-    // MOVEMENT
-    // -------------------------------------------------------------------------
+     // MOVEMENT
 
     private void HandleMovement()
     {
@@ -156,9 +123,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(direction.normalized * currentSpeed * Time.deltaTime);
     }
 
-    // -------------------------------------------------------------------------
-    // JUMP
-    // -------------------------------------------------------------------------
+     // JUMP
 
     private void HandleJump()
     {
@@ -166,14 +131,11 @@ public class PlayerMovement : MonoBehaviour
         // check below if you want to allow it)
         if (Input.GetKeyDown(jumpKey) && _isGrounded && !_isCrouching)
         {
-            // Physics formula: v = sqrt(h * -2 * g)
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
 
-    // -------------------------------------------------------------------------
-    // GRAVITY
-    // -------------------------------------------------------------------------
+     // GRAVITY
 
     private void ApplyGravity()
     {
@@ -186,9 +148,7 @@ public class PlayerMovement : MonoBehaviour
         _controller.Move(_velocity * Time.deltaTime);
     }
 
-    // -------------------------------------------------------------------------
     // CROUCH
-    // -------------------------------------------------------------------------
 
     private void HandleCrouch()
     {
@@ -209,10 +169,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Smoothly lerp the CharacterController height to avoid snapping.
-    /// Also moves the controller's center so the player doesn't float.
-    /// </summary>
     private void HandleCrouchTransition()
     {
         float newHeight = Mathf.Lerp(
@@ -226,19 +182,13 @@ public class PlayerMovement : MonoBehaviour
         _controller.center = new Vector3(0f, _controller.center.y - heightDelta / 2f, 0f);
         _controller.height = newHeight;
     }
-
-    /// <summary>
-    /// Checks if there's a ceiling directly above, so we don't stand up inside geometry.
-    /// </summary>
     private bool IsRoofAbove()
     {
         // Cast a ray straight up from the player's position
         return Physics.Raycast(transform.position, Vector3.up, standingHeight, groundMask);
     }
 
-    // -------------------------------------------------------------------------
     // GIZMOS — Draws the ground check sphere in the Scene view for debugging
-    // -------------------------------------------------------------------------
 
     private void OnDrawGizmosSelected()
     {
