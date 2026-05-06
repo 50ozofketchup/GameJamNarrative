@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class TimingMinigame : MonoBehaviour
@@ -20,6 +19,10 @@ public class TimingMinigame : MonoBehaviour
 
     [Header("Failure Settings")]
     [SerializeField] private int maxFailures = 3;
+
+    [Header("Green Zone")]
+    [SerializeField] private float greenZoneMinX = -367f;
+    [SerializeField] private float greenZoneMaxX = 367f;
 
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
@@ -109,6 +112,10 @@ public class TimingMinigame : MonoBehaviour
     {
         _currentSpeed = initialSpeed + _currentRound * speedIncreasePerRound;
         _gameActive = true;
+
+        float randomX = UnityEngine.Random.Range(greenZoneMinX, greenZoneMaxX);
+        greenZone.anchoredPosition = new Vector2(randomX, greenZone.anchoredPosition.y);
+
         needle.anchoredPosition = new Vector2(_boxLeft, needle.anchoredPosition.y);
         _direction = 1f;
         ShowResult($"Round {_currentRound + 1} / {totalRounds}", Color.white);
