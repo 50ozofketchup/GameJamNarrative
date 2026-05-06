@@ -1,13 +1,24 @@
-What is one human life worth? What does a human life cost?
+(Letter from X Hospital/Research centre)
 
-(During a war, scientists need to find alternative methods to study and do experiments. Supplies are low, funding is lacking and people are driven by their own motivations.)
+Hello Doctor X,
 
-As a doctor, you'll try to find a way to cure your child with these... alternative methods. You've stabilized your childs condition for weeks now while doing research. You've read science articles about comatose state, which could be reversed by managing brain functions. 
+We were very sorry to hear about your daughters condition and your spouses untimely passing. All of us at X faculty offer you our deep condonlenses.
 
-You wish to extract brain and spinal fluids from healthy individuals - ideally her her age. 
+Unfortunately with the state of the country followed the requirements from the army, government and other parties, our resources are extremely limited. We are unable to fund your research on the condition of your child and the state of profound unconsciousness.
+
+From Faculty of X Medical Centre
+
+(There is something written by hand on the other side)
+
+I'm sorry old friend but I couldn't cut it this time. The higher ups told that all the funds are directed to defense and rebuilding (and mostly other medical areas). 
+There is a new invention, a mechanical ventilator that's being tested right now that could help keep her lungs functioning. They're very expensive and it might take a few years to publish and we'd need to run some tests. But keep going with the spinal fluid and brain function research, it might prove useful. 
+Besides that, keep close to her. She might still hear you.
+
+From (friend's name)
+
+-> DONE
 
 
 
-Night 1
 
 
