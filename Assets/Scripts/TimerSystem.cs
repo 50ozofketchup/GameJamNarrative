@@ -11,12 +11,12 @@ public class TimerSystem : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private LockpickManager lockpickManager;
+    [SerializeField] private MinigameState minigameState;
 
     private float _timeRemaining;
     private bool _running;
     private Vector3 _resetPosition;
     private CharacterController _characterController;
-
 
     private void Start()
     {
@@ -45,7 +45,6 @@ public class TimerSystem : MonoBehaviour
     public void StopTimer()
     {
         _running = false;
-        UpdateTimerUI();
         if (timerText != null) timerText.text = "";
     }
 
@@ -54,13 +53,14 @@ public class TimerSystem : MonoBehaviour
     private void OnTimerExpired()
     {
         _running = false;
+        if (timerText != null) timerText.text = "";
+        minigameState.secondMinigameCompleted = false;
         ResetPlayer();
         lockpickManager.ResetLock();
     }
 
     private void ResetPlayer()
     {
-        // CharacterController must be disabled before moving the player
         _characterController.enabled = false;
         _characterController.transform.position = _resetPosition;
         _characterController.enabled = true;
@@ -70,6 +70,6 @@ public class TimerSystem : MonoBehaviour
     {
         if (timerText == null) return;
         int seconds = Mathf.CeilToInt(Mathf.Max(_timeRemaining, 0f));
-        timerText.text = $"{seconds}s left";
+        timerText.text = $"{seconds}s";
     }
 }

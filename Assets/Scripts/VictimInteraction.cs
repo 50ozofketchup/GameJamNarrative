@@ -19,7 +19,6 @@ public class VictimInteraction : MonoBehaviour
     [SerializeField] private TextMeshProUGUI promptText;
 
     private VictimState _state = VictimState.Idle;
-    private bool _tracingCompleted = false;
 
     private void Update()
     {
