@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class MinigameState : MonoBehaviour
 {
-    public bool secondMinigameCompleted = true;
+    public bool secondMinigameCompleted = false;
 }
