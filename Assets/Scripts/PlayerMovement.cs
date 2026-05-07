@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isCrouching;
     private float _targetHeight;        // The height we are lerping towards
 
+    [HideInInspector] public bool inputLocked = false;
     // UNITY LIFECYCLE
 
     private void Awake()
@@ -71,18 +72,20 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckGround();
-        HandleMovement();
 
-        if (canJump) HandleJump();
-        if (canCrouch) HandleCrouch();
-        if (canSprint) {  }
+        if (!inputLocked)
+        {
+            HandleMovement();
+            if (canJump) HandleJump();
+            if (canCrouch) HandleCrouch();
+        }
 
         ApplyGravity();
         HandleCrouchTransition();
     }
 
     // GROUND CHECK
- 
+
     private void CheckGround()
     {
         // Cast a small sphere at the groundCheck position — if it overlaps the

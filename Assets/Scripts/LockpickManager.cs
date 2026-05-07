@@ -7,9 +7,14 @@ public class LockpickManager : MonoBehaviour
     [SerializeField] private TimingMinigame minigame;
     [SerializeField] private PlayerMovement playerMovement;
     [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private TimerSystem timerSystem;
+
+    private CharacterController _characterController;
+    private bool _locked = true;
 
     private void Start()
     {
+        _characterController = playerMovement.GetComponent<CharacterController>();
         minigamePanel.SetActive(false);
         minigame.OnSuccess += HandleSuccess;
         minigame.OnFail += HandleFail;
@@ -17,7 +22,7 @@ public class LockpickManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(openKey) && !minigamePanel.activeSelf)
+        if (Input.GetKeyDown(openKey) && !minigamePanel.activeSelf && _locked)
             Open();
     }
 
@@ -31,9 +36,10 @@ public class LockpickManager : MonoBehaviour
         minigame.StartGame();
     }
 
-    private void Close()
+    // Called by TimerSystem when the timer expires
+    public void ResetLock()
     {
-        minigamePanel.SetActive(false);
+        _locked = true;
         playerMovement.enabled = true;
         mouseLook.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,11 +48,21 @@ public class LockpickManager : MonoBehaviour
 
     private void HandleSuccess()
     {
+        _locked = false;
         Close();
-        // door.Open() goes here later
+        timerSystem.StartTimer(playerMovement.transform.position, _characterController);
     }
 
     private void HandleFail() => Close();
+
+    private void Close()
+    {
+        minigamePanel.SetActive(false);
+        playerMovement.enabled = true;
+        mouseLook.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
 
     private void OnDestroy()
     {
