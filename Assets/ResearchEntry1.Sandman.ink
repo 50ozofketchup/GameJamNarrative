@@ -1,4 +1,4 @@
-Research Journal Entry
+Dr. Traum's Research Journal Entry
 
 Materials for sample harvesting:
 
