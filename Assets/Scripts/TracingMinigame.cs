@@ -19,6 +19,11 @@ public class TracingMinigame : MonoBehaviour
     [SerializeField] private Color startPointColor = Color.yellow;
     [SerializeField] private float dotSize = 12f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip drawingSound;
+    [SerializeField] private AudioClip mistakeSound;
+
     private Vector2[] _pathPoints;
     private Image[] _pathDots;
     private int _currentPointIndex = 0;
@@ -58,19 +63,21 @@ public class TracingMinigame : MonoBehaviour
         {
             if (!_active && _currentPointIndex == 0 &&
                 Vector2.Distance(mousePos, _pathPoints[0]) <= tolerance)
-            {
                 _active = true;
-            }
+
             _mouseHeld = true;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             _mouseHeld = false;
+            StopDrawingSound();
             if (_active) RegisterMistake();
         }
 
         if (!_active || !_mouseHeld) return;
+
+        PlayDrawingSound();
 
         float distToNext = Vector2.Distance(mousePos, _pathPoints[_currentPointIndex]);
 
@@ -85,6 +92,7 @@ public class TracingMinigame : MonoBehaviour
             if (_currentPointIndex >= _pathPoints.Length)
             {
                 _active = false;
+                StopDrawingSound();
                 OnSuccess?.Invoke();
             }
         }
@@ -99,12 +107,29 @@ public class TracingMinigame : MonoBehaviour
         }
     }
 
+    private void PlayDrawingSound()
+    {
+        if (audioSource == null || drawingSound == null) return;
+        if (!audioSource.isPlaying)
+            audioSource.PlayOneShot(drawingSound);
+    }
+
+    private void StopDrawingSound()
+    {
+        if (audioSource == null) return;
+        audioSource.Stop();
+    }
+
     private void RegisterMistake()
     {
         _mistakes++;
         _currentPointIndex = 0;
         _active = false;
         _mouseHeld = false;
+        StopDrawingSound();
+
+        if (audioSource != null && mistakeSound != null)
+            audioSource.PlayOneShot(mistakeSound);
 
         foreach (var dot in _pathDots)
             if (dot != null) dot.color = pathColor;

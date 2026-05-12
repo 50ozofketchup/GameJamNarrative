@@ -8,6 +8,9 @@ public class LockpickManager : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private TimerSystem timerSystem;
     [SerializeField] private Door door;
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip doorOpenSound;
 
     private CharacterController _characterController;
     private bool _locked = true;
@@ -48,6 +51,8 @@ public class LockpickManager : MonoBehaviour
         door.Open();
         Close();
         timerSystem.StartTimer(playerMovement.transform.position, _characterController);
+        if (audioSource != null && doorOpenSound != null)
+            audioSource.PlayOneShot(doorOpenSound);
     }
 
     private void HandleFail() => Close();
