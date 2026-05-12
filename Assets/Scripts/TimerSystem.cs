@@ -70,6 +70,6 @@ public class TimerSystem : MonoBehaviour
     {
         if (timerText == null) return;
         int seconds = Mathf.CeilToInt(Mathf.Max(_timeRemaining, 0f));
-        timerText.text = $"{seconds}s";
+        timerText.text = $"{seconds}s left until you get caught";
     }
 }

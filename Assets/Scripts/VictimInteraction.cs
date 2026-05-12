@@ -84,8 +84,8 @@ public class VictimInteraction : MonoBehaviour
 
         promptText.text = _state switch
         {
-            VictimState.Idle => hotbar.SelectedIndex == 0 ? "Press F to apply mask" : "Equip item 1 first",
-            VictimState.MaskOn => hotbar.SelectedIndex == 1 ? "Press F to take sample" : "Equip item 2",
+            VictimState.Idle => hotbar.SelectedIndex == 0 ? "Press F to apply mask" : "Equip the anaesthetic first",
+            VictimState.MaskOn => hotbar.SelectedIndex == 1 ? "Press F to take sample" : "Equip the scalpel",
             VictimState.SampleTaken => "Press F to remove mask",
             VictimState.MaskRemoved => "Leave through the exit",
             _ => ""
