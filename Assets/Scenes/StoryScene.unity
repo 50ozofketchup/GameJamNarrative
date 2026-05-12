@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &121686697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -406,8 +406,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -890,7 +890,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f3a30fc035d1b7a4489a521556d92bd9, type: 3}
   night1Segments:
   - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
-  night2Segments: []
+  night2Segments:
+  - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
   night3Segments: []
   night4Segments: []
   night5Segments: []
