@@ -98,6 +98,7 @@ public class StoryManager : MonoBehaviour
 
             case GameProgressionManager.StoryMode.NightOutro:
                 gpm.currentNight++;
+                Debug.Log($"Starting night {gpm.currentNight + 1}");
                 if (gpm.currentNight > 5)
                 {
                     Debug.Log("All nights complete.");
