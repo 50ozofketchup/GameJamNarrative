@@ -1037,7 +1037,8 @@ MonoBehaviour:
   - {fileID: 4900000, guid: f3a30fc035d1b7a4489a521556d92bd9, type: 3}
   night1Segments:
   - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
-  night2Segments: []
+  night2Segments:
+  - {fileID: 0}
   night3Segments: []
   night4Segments: []
   night5Segments: []
