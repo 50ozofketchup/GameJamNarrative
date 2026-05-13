@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &121686697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1038,7 +1038,7 @@ MonoBehaviour:
   night1Segments:
   - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
   night2Segments:
-  - {fileID: 0}
+  - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
   night3Segments: []
   night4Segments: []
   night5Segments: []
@@ -1182,7 +1182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1627406804
 MonoBehaviour:
   m_ObjectHideFlags: 0
