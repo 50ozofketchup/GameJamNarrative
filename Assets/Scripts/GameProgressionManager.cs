@@ -1,8 +1,9 @@
 using UnityEngine;
-using Ink.Runtime;
 
 public class GameProgressionManager : MonoBehaviour
 {
+    public enum StoryMode { Opening, NightOutro, BadEnding1, BadEnding2 }
+
     public static GameProgressionManager Instance { get; private set; }
 
     [Header("Opening")]
@@ -15,32 +16,37 @@ public class GameProgressionManager : MonoBehaviour
     public TextAsset[] night4Segments;
     public TextAsset[] night5Segments;
 
+    [Header("Bad Endings")]
+    public TextAsset[] badEnding1Segments;
+    public TextAsset[] badEnding2Segments;
+
     [HideInInspector] public int currentNight = 1;
-    [HideInInspector] public bool isOpening = true;
+    [HideInInspector] public StoryMode currentMode = StoryMode.Opening;
+    [HideInInspector] public Vector3 badEnding1ReturnPosition;
 
     public TextAsset[] GetCurrentSegments()
     {
-        if (isOpening) return openingSegments;
-
-        return currentNight switch
+        return currentMode switch
         {
-            1 => night1Segments,
-            2 => night2Segments,
-            3 => night3Segments,
-            4 => night4Segments,
-            5 => night5Segments,
+            StoryMode.Opening => openingSegments,
+            StoryMode.BadEnding1 => badEnding1Segments,
+            StoryMode.BadEnding2 => badEnding2Segments,
+            StoryMode.NightOutro => currentNight switch
+            {
+                1 => night1Segments,
+                2 => night2Segments,
+                3 => night3Segments,
+                4 => night4Segments,
+                5 => night5Segments,
+                _ => null
+            },
             _ => null
         };
     }
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
+        if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
