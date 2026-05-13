@@ -28,7 +28,8 @@ public class VictimInteraction : MonoBehaviour
 
         if (inRange && Input.GetKeyDown(interactKey))
             HandleInteract();
-    }
+
+         }
 
     private void HandleInteract()
     {
@@ -96,7 +97,7 @@ public class VictimInteraction : MonoBehaviour
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         if (Physics.Raycast(ray, out hit, interactDistance))
-            return hit.transform == transform;
+            return hit.transform == transform || hit.transform.parent == transform;
         return false;
     }
 }
