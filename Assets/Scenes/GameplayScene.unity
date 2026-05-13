@@ -455,6 +455,7 @@ Transform:
   - {fileID: 1444145114}
   - {fileID: 551700968}
   - {fileID: 641185669}
+  - {fileID: 2030801086}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &225402200
@@ -1575,6 +1576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NightCompleteTrigger
   storySceneName: StoryScene
+  minigameState: {fileID: 1946449926}
+  lockpickManager: {fileID: 1727520546}
 --- !u!65 &551700970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2842,7 +2845,7 @@ Transform:
   m_GameObject: {fileID: 1277110743}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.53, y: 1.5, z: 17.05}
+  m_LocalPosition: {x: 0.53, y: 1.5, z: 17.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3726,6 +3729,7 @@ MonoBehaviour:
   timerText: {fileID: 423539793}
   lockpickManager: {fileID: 1727520546}
   minigameState: {fileID: 1946449926}
+  storySceneName: StoryScene
 --- !u!4 &1616165527
 Transform:
   m_ObjectHideFlags: 0
@@ -4397,6 +4401,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 221197247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2030801085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030801086}
+  - component: {fileID: 2030801087}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2030801086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030801085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.85, y: 1.99, z: -12.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 221197247}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2030801087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030801085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11a39bd68f0a8e74da1ccd83b435604d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PayerSpawn
+  player: {fileID: 1277110749}
+  playerCamera: {fileID: 341995691}
+  mouseLook: {fileID: 341995692}
 --- !u!1 &2030988020
 GameObject:
   m_ObjectHideFlags: 0

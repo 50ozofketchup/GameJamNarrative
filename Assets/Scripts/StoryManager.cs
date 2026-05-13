@@ -24,8 +24,6 @@ public class StoryManager : MonoBehaviour
     private void Start()
     {
         storyPanel.SetActive(false);
-
-        // Show black screen first, wait for left click to begin
         StartCoroutine(WaitForClick());
     }
 
@@ -41,7 +39,6 @@ public class StoryManager : MonoBehaviour
     private void Update()
     {
         if (!_ready) return;
-
         if (Input.GetMouseButtonDown(0))
             AdvanceSegment();
     }
@@ -59,13 +56,10 @@ public class StoryManager : MonoBehaviour
 
         Story story = new Story(_segments[_segmentIndex].text);
         string fullText = "";
-
         while (story.canContinue)
             fullText += story.Continue();
 
         storyText.text = fullText.Trim();
-
-        // Small delay so the click that triggered this doesn't immediately advance
         StartCoroutine(ReadyAfterDelay());
     }
 
@@ -93,23 +87,30 @@ public class StoryManager : MonoBehaviour
         _ready = false;
         storyPanel.SetActive(false);
 
-        if (GameProgressionManager.Instance.isOpening)
-        {
-            GameProgressionManager.Instance.isOpening = false;
-            SceneTransition.Instance.LoadScene(gameplaySceneName);
-        }
-        else
-        {
-            GameProgressionManager.Instance.currentNight++;
+        var gpm = GameProgressionManager.Instance;
 
-            if (GameProgressionManager.Instance.currentNight > 5)
-            {
-                // Game complete — extend this later for an ending screen
-                Debug.Log("All nights complete.");
-                return;
-            }
+        switch (gpm.currentMode)
+        {
+            case GameProgressionManager.StoryMode.Opening:
+                gpm.currentMode = GameProgressionManager.StoryMode.NightOutro;
+                SceneTransition.Instance.LoadScene(gameplaySceneName);
+                break;
 
-            SceneTransition.Instance.LoadScene(gameplaySceneName);
+            case GameProgressionManager.StoryMode.NightOutro:
+                gpm.currentNight++;
+                if (gpm.currentNight > 5)
+                {
+                    Debug.Log("All nights complete.");
+                    return;
+                }
+                SceneTransition.Instance.LoadScene(gameplaySceneName);
+                break;
+
+            case GameProgressionManager.StoryMode.BadEnding1:
+            case GameProgressionManager.StoryMode.BadEnding2:
+                gpm.currentMode = GameProgressionManager.StoryMode.NightOutro;
+                SceneTransition.Instance.LoadScene(gameplaySceneName);
+                break;
         }
     }
 }

@@ -13,6 +13,9 @@ public class TimerSystem : MonoBehaviour
     [SerializeField] private LockpickManager lockpickManager;
     [SerializeField] private MinigameState minigameState;
 
+    [Header("Scene Names")]
+    [SerializeField] private string storySceneName = "StoryScene";
+
     private float _timeRemaining;
     private bool _running;
     private Vector3 _resetPosition;
@@ -26,10 +29,8 @@ public class TimerSystem : MonoBehaviour
     private void Update()
     {
         if (!_running) return;
-
         _timeRemaining -= Time.deltaTime;
         UpdateTimerUI();
-
         if (_timeRemaining <= 0f)
             OnTimerExpired();
     }
@@ -55,15 +56,12 @@ public class TimerSystem : MonoBehaviour
         _running = false;
         if (timerText != null) timerText.text = "";
         minigameState.secondMinigameCompleted = false;
-        ResetPlayer();
         lockpickManager.ResetLock();
-    }
 
-    private void ResetPlayer()
-    {
-        _characterController.enabled = false;
-        _characterController.transform.position = _resetPosition;
-        _characterController.enabled = true;
+        GameProgressionManager.Instance.currentMode = GameProgressionManager.StoryMode.BadEnding1;
+        GameProgressionManager.Instance.badEnding1ReturnPosition = _resetPosition;
+
+        SceneTransition.Instance.LoadScene(storySceneName);
     }
 
     private void UpdateTimerUI()

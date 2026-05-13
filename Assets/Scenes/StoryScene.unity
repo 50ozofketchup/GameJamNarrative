@@ -1041,8 +1041,13 @@ MonoBehaviour:
   night3Segments: []
   night4Segments: []
   night5Segments: []
+  badEnding1Segments:
+  - {fileID: 4900000, guid: f95c9391eed8eb647a21613950f435dc, type: 3}
+  badEnding2Segments:
+  - {fileID: 4900000, guid: f3a30fc035d1b7a4489a521556d92bd9, type: 3}
   currentNight: 1
-  isOpening: 1
+  currentMode: 0
+  badEnding1ReturnPosition: {x: 0, y: 0, z: 0}
 --- !u!4 &1548493526
 Transform:
   m_ObjectHideFlags: 0
