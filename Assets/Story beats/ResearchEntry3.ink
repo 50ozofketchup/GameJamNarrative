@@ -1,4 +1,4 @@
-Dr. Traum's Research Entry 3
+<font=Biro_Script_reduced SDF.asset>Dr. Traum's Research Entry 3
 
 Materials:
 
@@ -18,6 +18,6 @@ I need only a bit more. Next one might be the last. Please be the last one...
 
 I keep seeing their faces and hearing their little grunts when I'm asleep...
 
-But I'm doing this for Orianna. I can wake the others up too, when I have perfected the cure. Maybe then I'll earn my doctor title again and make history with my research...
+But I'm doing this for Orianna. I can wake the others up too, when I have perfected the cure. Maybe then I'll earn my doctor title again and make history with my research...</font>
 
     -> END

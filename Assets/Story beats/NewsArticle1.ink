@@ -1,4 +1,4 @@
-BREAKING NEWS!
+<font=OldNewspaperTypes SDF.asset>BREAKING NEWS!
 
 A strange phenomenon has the village of Dreslawa in a downward spiral.
 
@@ -10,6 +10,6 @@ Many towns and villages have struggled after the war, but most have rebuilt succ
 
 Instead of suspecting one of their own, they have started to believe the culprit is the creature Sandman. This fairytale has taken a disturbing turn within this village's beliefs: rather than putting their children to sleep, it induces a profound state of unconsciousness. 
 
-How many victims will Sandman put to bed forever?
+How many victims will Sandman put to bed forever?</font>
 
 -> DONE
