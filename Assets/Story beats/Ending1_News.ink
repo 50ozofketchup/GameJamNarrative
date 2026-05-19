@@ -1,4 +1,4 @@
-<font=OldNewspaperTypes SDF.asset>DR. SANDMAN STRIKES AGAIN - 5TH VICTIM SUCCUMBED
+DR. SANDMAN STRIKES AGAIN - 5TH VICTIM SUCCUMBED
 
 The legend of Sandman is alive and well in Dreslawa. A fifth victim has fallen into a slumber while desperate parents cry for the state police to come to their aid. This tragedy-filled village hopes the culprit gets caught or has the decency to come forward. 
 
@@ -10,7 +10,6 @@ I reached out for an interview, but from the little we have seen of them, the gi
 
 Odd timing to arrive for this gentleman, nevertheless a needed one. 
 
-It shall be seen if Dr. Traum's methods prove successful. If so, this might be the beginning of a global medical miracle.</font> 
-
+It shall be seen if Dr. Traum's methods prove successful. If so, this might be the beginning of a global medical miracle.
 
     -> END

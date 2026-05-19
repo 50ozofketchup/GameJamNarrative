@@ -1,4 +1,4 @@
-<font="BiroScriptreduced SDF">(There is something on the other side)
+(There is something on the other side)
 
 I'm sorry old friend, but I couldn't cut it this time. The higher ups said that all the funds are being directed to defense and rebuilding (at least partly lies, I think many of them are funneling money to themselves). 
 
@@ -8,4 +8,4 @@ Besides that, keep close to her. She could still hear you.
 
 From
 
-Klaus</font>
+Klaus

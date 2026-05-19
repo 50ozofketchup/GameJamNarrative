@@ -1,4 +1,4 @@
-<font=Biro_Script_reduced SDF.asset>Dr. Traum's Research Journal Entry
+Dr. Traum's Research Journal Entry
 
 Materials for sample harvesting:
 
@@ -14,4 +14,4 @@ The sample I harvested yesterday from the individual proved faulty. I need to be
 
 The process took too long, there was not enough volume and the heart rate of the patient increased during the operation. Might be due to patients' old age and a lack of sterile environment.
 
-I can't go back to the same person. Next one should be someone else...</font>
+I can't go back to the same person. Next one should be someone else...
