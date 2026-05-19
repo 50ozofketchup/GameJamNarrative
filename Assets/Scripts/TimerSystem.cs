@@ -14,6 +14,7 @@ public class TimerSystem : MonoBehaviour
     [SerializeField] private LockpickManager lockpickManager;
     [SerializeField] private MinigameState minigameState;
 
+
     [Header("Scene Names")]
     [SerializeField] private string storySceneName = "StoryScene";
 
@@ -26,7 +27,10 @@ public class TimerSystem : MonoBehaviour
     {
         if (timerText != null) timerText.text = "";
     }
-
+    public void SetLockpickManager(LockpickManager lm)
+    {
+        lockpickManager = lm;
+    }
     private void Update()
     {
         if (!_running) return;

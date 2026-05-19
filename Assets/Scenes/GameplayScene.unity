@@ -11139,6 +11139,7 @@ MonoBehaviour:
   - lightsParent: {fileID: 1607102073}
     doorPivot: {fileID: 896503821}
   nightCompleteTrigger: {fileID: 551700969}
+  timerSystem: {fileID: 1616165526}
 --- !u!1 &1465585649
 GameObject:
   m_ObjectHideFlags: 0
@@ -12384,7 +12385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4696f1e4dcfbee4d814bdda7f39efe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerSystem
-  timeLimit: 10
+  timeLimit: 100
   timeReductionPerNight: 20
   timerText: {fileID: 423539793}
   lockpickManager: {fileID: 0}
