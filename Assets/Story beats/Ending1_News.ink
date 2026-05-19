@@ -1,4 +1,4 @@
-<size=50%>DR. SANDMAN STRIKES AGAIN - 5TH VICTIM SUCCUMBED
+<size=75%>DR. SANDMAN STRIKES AGAIN - 5TH VICTIM SUCCUMBED
 
 The legend of Sandman is alive and well in Dreslawa. A fifth victim has fallen into a slumber while desperate parents cry for the state police to come to their aid. This tragedy-filled village hopes the culprit gets caught or has the decency to come forward. 
 
