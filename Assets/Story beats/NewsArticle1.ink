@@ -1,4 +1,4 @@
-<size=50%>BREAKING NEWS!
+<size=75%>BREAKING NEWS!
 
 A strange phenomenon has the village of Dreslawa in a downward spiral.
 
