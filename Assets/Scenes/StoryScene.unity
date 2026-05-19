@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &121686697
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1033,19 +1033,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NightCompleteTrigger
   openingSegments:
-  - {fileID: 4900000, guid: f95c9391eed8eb647a21613950f435dc, type: 3}
-  - {fileID: 4900000, guid: f3a30fc035d1b7a4489a521556d92bd9, type: 3}
+  - {fileID: 4900000, guid: e539198b388920f4a90b965049b4e68b, type: 3}
+  - {fileID: 4900000, guid: e5d4e16850085004c80625096b1b2822, type: 3}
   night1Segments:
-  - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
+  - {fileID: 4900000, guid: 2df9d1120fe49064a8696d7561a59098, type: 3}
   night2Segments:
-  - {fileID: 4900000, guid: d98a3d7955e5b264691bcc68725722fc, type: 3}
-  night3Segments: []
-  night4Segments: []
-  night5Segments: []
+  - {fileID: 4900000, guid: 59545cfdc912e44488d599c6118a546a, type: 3}
+  night3Segments:
+  - {fileID: 4900000, guid: 346a04a8734553e4d85801e3bfff2c57, type: 3}
+  night4Segments:
+  - {fileID: 4900000, guid: 185d2adb84c2cc540b343741a6be548f, type: 3}
+  night5Segments:
+  - {fileID: 4900000, guid: 61036a5189e0e8a418324e8ee4df88fc, type: 3}
   badEnding1Segments:
-  - {fileID: 4900000, guid: f95c9391eed8eb647a21613950f435dc, type: 3}
+  - {fileID: 4900000, guid: 25544def9b6154840bf568ca2a9942b8, type: 3}
   badEnding2Segments:
-  - {fileID: 4900000, guid: f3a30fc035d1b7a4489a521556d92bd9, type: 3}
+  - {fileID: 4900000, guid: 7e8c31c327751d14581a69b2d3a447a1, type: 3}
   currentNight: 1
   currentMode: 0
   badEnding1ReturnPosition: {x: 0, y: 0, z: 0}
@@ -1182,7 +1185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1627406804
 MonoBehaviour:
   m_ObjectHideFlags: 0
