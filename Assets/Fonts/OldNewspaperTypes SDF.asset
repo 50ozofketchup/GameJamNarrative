@@ -1917,12 +1917,12 @@ MonoBehaviour:
     m_GlyphIndex: 105
     m_Scale: 1
   - m_ElementType: 1
-    m_Unicode: 8230
-    m_GlyphIndex: 109
-    m_Scale: 1
-  - m_ElementType: 1
     m_Unicode: 8212
     m_GlyphIndex: 122
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 8230
+    m_GlyphIndex: 109
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 5150852603138457347}
