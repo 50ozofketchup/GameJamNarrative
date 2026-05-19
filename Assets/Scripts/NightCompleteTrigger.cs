@@ -18,6 +18,7 @@ public class NightCompleteTrigger : MonoBehaviour
         bool doorUnlocked = lockpickManager != null && !lockpickManager.IsLocked;
         bool harvestComplete = minigameState.secondMinigameCompleted;
 
+        Debug.Log($"NightCompleteTrigger hit - doorUnlocked: {doorUnlocked}, harvestComplete: {harvestComplete}, lockpickManager null: {lockpickManager == null}");
         if (!doorUnlocked || !harvestComplete)
         {
             GameProgressionManager.Instance.currentMode = GameProgressionManager.StoryMode.BadEnding2;

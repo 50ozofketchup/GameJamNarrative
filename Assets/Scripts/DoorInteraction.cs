@@ -24,6 +24,9 @@ public class DoorInteraction : MonoBehaviour
 
         if (inRange && lockpickManager.IsLocked && Input.GetKeyDown(interactKey))
             lockpickManager.Open();
+
+        Ray debugRay = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
     }
 
     private bool IsDoorInRange()

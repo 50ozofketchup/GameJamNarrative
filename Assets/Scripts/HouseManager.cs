@@ -14,11 +14,13 @@ public class HouseManager : MonoBehaviour
 
     private void Start()
     {
+     
         int nightIndex = GameProgressionManager.Instance != null
             ? GameProgressionManager.Instance.currentNight - 1
             : 0;
 
         nightIndex = Mathf.Clamp(nightIndex, 0, houses.Length - 1);
+        Debug.Log($"Current night from GPM: {GameProgressionManager.Instance.currentNight}, nightIndex: {nightIndex}");
 
         for (int i = 0; i < houses.Length; i++)
         {
@@ -30,11 +32,14 @@ public class HouseManager : MonoBehaviour
             if (houses[i].doorPivot != null)
             {
                 houses[i].doorPivot.GetComponent<DoorInteraction>().enabled = isTargetHouse;
-
                 if (isTargetHouse)
-                    nightCompleteTrigger.SetLockpickManager(
-                        houses[i].doorPivot.GetComponent<LockpickManager>());
+                {
+                    LockpickManager lm = houses[i].doorPivot.GetComponent<LockpickManager>();
+                    Debug.Log($"Setting LockpickManager from house {i}, lm null: {lm == null}");
+                    nightCompleteTrigger.SetLockpickManager(lm);
+                }
             }
+
         }
     }
 }

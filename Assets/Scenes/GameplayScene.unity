@@ -1162,13 +1162,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278960501}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.28505167, z: -0, w: 0.9585121}
-  m_LocalPosition: {x: 0.39, y: 0.091, z: -1.83}
+  m_LocalRotation: {x: -0, y: -0.2145612, z: -0, w: 0.97671056}
+  m_LocalPosition: {x: 8.112, y: 0.091, z: -38.021}
   m_LocalScale: {x: 0.4, y: 0.45, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 221197247}
-  m_LocalEulerAnglesHint: {x: 0, y: 33.124, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -24.78, z: 0}
 --- !u!65 &278960503
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3010,7 +3010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NightCompleteTrigger
   storySceneName: StoryScene
   minigameState: {fileID: 1946449926}
-  lockpickManager: {fileID: 0}
+  lockpickManager: {fileID: 1422476677}
 --- !u!65 &551700970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8671,6 +8671,8 @@ GameObject:
   - component: {fileID: 1422476673}
   - component: {fileID: 1422476675}
   - component: {fileID: 1422476674}
+  - component: {fileID: 1422476677}
+  - component: {fileID: 1422476676}
   m_Layer: 0
   m_Name: DoorPivot1
   m_TagString: Untagged
@@ -8723,9 +8725,126 @@ MonoBehaviour:
   interactDistance: 2.5
   interactKey: 101
   playerCamera: {fileID: 341995695}
-  lockpickManager: {fileID: 1727520546}
+  lockpickManager: {fileID: 1422476677}
   promptText: {fileID: 1675981479}
   minigamePanel: {fileID: 532934444}
+--- !u!82 &1422476676
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422476672}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1422476677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422476672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b3fe0285ca7414e8b1e6d4f6683043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockpickManager
+  minigamePanel: {fileID: 532934444}
+  minigame: {fileID: 532934447}
+  playerMovement: {fileID: 1277110744}
+  mouseLook: {fileID: 341995692}
+  timerSystem: {fileID: 1616165526}
+  door: {fileID: 1422476674}
+  audioSource: {fileID: 1422476676}
+  doorOpenSound: {fileID: 8300000, guid: 3ed423f71732c914fbc53759d57dce4a, type: 3}
 --- !u!1 &1422567732
 GameObject:
   m_ObjectHideFlags: 0
@@ -10272,7 +10391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TimerSystem
   timeLimit: 60
   timerText: {fileID: 423539793}
-  lockpickManager: {fileID: 1727520546}
+  lockpickManager: {fileID: 0}
   minigameState: {fileID: 1946449926}
   storySceneName: StoryScene
 --- !u!4 &1616165527
@@ -11002,7 +11121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1727520547}
-  - component: {fileID: 1727520546}
   - component: {fileID: 1727520548}
   m_Layer: 0
   m_Name: LockpickManager1
@@ -11011,26 +11129,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1727520546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727520545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b3fe0285ca7414e8b1e6d4f6683043, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LockpickManager
-  minigamePanel: {fileID: 532934444}
-  minigame: {fileID: 532934447}
-  playerMovement: {fileID: 1277110744}
-  mouseLook: {fileID: 341995692}
-  timerSystem: {fileID: 1616165526}
-  door: {fileID: 1422476674}
-  audioSource: {fileID: 1727520548}
-  doorOpenSound: {fileID: 8300000, guid: 3ed423f71732c914fbc53759d57dce4a, type: 3}
 --- !u!4 &1727520547
 Transform:
   m_ObjectHideFlags: 0

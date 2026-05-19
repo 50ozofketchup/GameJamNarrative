@@ -23,6 +23,7 @@ public class StoryManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"StoryManager Start - mode: {GameProgressionManager.Instance.currentMode}, night: {GameProgressionManager.Instance.currentNight}");
         storyPanel.SetActive(false);
         StartCoroutine(WaitForClick());
     }
@@ -33,6 +34,7 @@ public class StoryManager : MonoBehaviour
         SceneTransition.Instance.FadeIn();
         _segments = GameProgressionManager.Instance.GetCurrentSegments();
         _segmentIndex = 0;
+        Debug.Log($"WaitForClick - segments count: {(_segments != null ? _segments.Length : 0)}");
         ShowSegment();
     }
 
@@ -88,17 +90,19 @@ public class StoryManager : MonoBehaviour
         storyPanel.SetActive(false);
 
         var gpm = GameProgressionManager.Instance;
+        Debug.Log($"OnAllSegmentsDone - mode: {gpm.currentMode}, night: {gpm.currentNight}");
 
         switch (gpm.currentMode)
         {
             case GameProgressionManager.StoryMode.Opening:
                 gpm.currentMode = GameProgressionManager.StoryMode.NightOutro;
+                Debug.Log("Opening done, loading gameplay night 1");
                 SceneTransition.Instance.LoadScene(gameplaySceneName);
                 break;
 
             case GameProgressionManager.StoryMode.NightOutro:
+                Debug.Log($"Night {gpm.currentNight} outro done, incrementing to {gpm.currentNight + 1}");
                 gpm.currentNight++;
-                Debug.Log($"Starting night {gpm.currentNight + 1}");
                 if (gpm.currentNight > 5)
                 {
                     Debug.Log("All nights complete.");
@@ -110,6 +114,7 @@ public class StoryManager : MonoBehaviour
             case GameProgressionManager.StoryMode.BadEnding1:
             case GameProgressionManager.StoryMode.BadEnding2:
                 gpm.currentMode = GameProgressionManager.StoryMode.NightOutro;
+                Debug.Log($"Bad ending done, retrying night {gpm.currentNight}");
                 SceneTransition.Instance.LoadScene(gameplaySceneName);
                 break;
         }
