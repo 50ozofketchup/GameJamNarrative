@@ -12384,7 +12384,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4696f1e4dcfbee4d814bdda7f39efe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerSystem
-  timeLimit: 60
+  timeLimit: 10
+  timeReductionPerNight: 20
   timerText: {fileID: 423539793}
   lockpickManager: {fileID: 0}
   minigameState: {fileID: 1946449926}

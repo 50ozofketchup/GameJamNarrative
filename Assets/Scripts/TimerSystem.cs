@@ -5,6 +5,7 @@ public class TimerSystem : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float timeLimit = 60f;
+    [SerializeField] private float timeReductionPerNight = 20f;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI timerText;
@@ -39,10 +40,12 @@ public class TimerSystem : MonoBehaviour
     {
         _resetPosition = resetPosition;
         _characterController = characterController;
-        _timeRemaining = timeLimit;
+        int night = GameProgressionManager.Instance != null
+            ? GameProgressionManager.Instance.currentNight
+            : 1;
+        _timeRemaining = Mathf.Max(0f, timeLimit - (night - 1) * timeReductionPerNight);
         _running = true;
     }
-
     public void StopTimer()
     {
         _running = false;
