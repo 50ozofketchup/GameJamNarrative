@@ -6,11 +6,16 @@ public class NightCompleteTrigger : MonoBehaviour
     [SerializeField] private MinigameState minigameState;
     [SerializeField] private LockpickManager lockpickManager;
 
+    public void SetLockpickManager(LockpickManager lm)
+    {
+        lockpickManager = lm;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player")) return;
 
-        bool doorUnlocked = !lockpickManager.IsLocked;
+        bool doorUnlocked = lockpickManager != null && !lockpickManager.IsLocked;
         bool harvestComplete = minigameState.secondMinigameCompleted;
 
         if (!doorUnlocked || !harvestComplete)
