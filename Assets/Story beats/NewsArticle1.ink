@@ -1,6 +1,6 @@
-<size=90%>BREAKING NEWS!</size>
+<size=100%>BREAKING NEWS!</size>
 
-<size=80%>A strange phenomenon has the village of Dreslawa in a downward spiral.
+<size=85%>A strange phenomenon has the village of Dreslawa in a downward spiral.
 
 Like every night, residents have gone to bed and fallen asleep — only to never wake up again. 
 
