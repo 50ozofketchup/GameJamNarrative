@@ -1090,6 +1090,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: 185d2adb84c2cc540b343741a6be548f, type: 3}
   night5Segments:
   - {fileID: 4900000, guid: 61036a5189e0e8a418324e8ee4df88fc, type: 3}
+  - {fileID: 4900000, guid: d27ca461b9d64b84496ff63aeb747d38, type: 3}
   badEnding1Segments:
   - {fileID: 4900000, guid: 25544def9b6154840bf568ca2a9942b8, type: 3}
   badEnding2Segments:
