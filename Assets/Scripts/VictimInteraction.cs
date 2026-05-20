@@ -17,6 +17,7 @@ public class VictimInteraction : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI promptText;
+    [SerializeField] private GameObject maskObject;
 
     private VictimState _state = VictimState.Idle;
 
@@ -39,6 +40,7 @@ public class VictimInteraction : MonoBehaviour
                 if (hotbar.SelectedIndex == 0)
                 {
                     _state = VictimState.MaskOn;
+                    if (maskObject != null) maskObject.SetActive(true);
                     Debug.Log("Mask applied to victim.");
                 }
                 else
@@ -61,6 +63,7 @@ public class VictimInteraction : MonoBehaviour
 
             case VictimState.SampleTaken:
                 _state = VictimState.MaskRemoved;
+                if (maskObject != null) maskObject.SetActive(false);
                 minigameState.secondMinigameCompleted = true;
                 Debug.Log("Mask removed. Second minigame complete. Head to the exit.");
                 break;

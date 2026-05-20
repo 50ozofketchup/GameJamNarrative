@@ -1,4 +1,4 @@
-<size=/85%>BREAKING NEWS!</size>
+<size=85%>BREAKING NEWS!</size>
 
 <size=75%>A strange phenomenon has the village of Dreslawa in a downward spiral.
 

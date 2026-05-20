@@ -11,10 +11,10 @@ public class HouseManager : MonoBehaviour
 
     [SerializeField] private HouseData[] houses = new HouseData[5];
     [SerializeField] private NightCompleteTrigger nightCompleteTrigger;
+    [SerializeField] private TimerSystem timerSystem;
 
     private void Start()
     {
-     
         int nightIndex = GameProgressionManager.Instance != null
             ? GameProgressionManager.Instance.currentNight - 1
             : 0;
@@ -31,15 +31,16 @@ public class HouseManager : MonoBehaviour
 
             if (houses[i].doorPivot != null)
             {
-                houses[i].doorPivot.GetComponent<DoorInteraction>().enabled = isTargetHouse;
+                houses[i].doorPivot.GetComponentInChildren<DoorInteraction>().enabled = isTargetHouse;
+
                 if (isTargetHouse)
                 {
                     LockpickManager lm = houses[i].doorPivot.GetComponent<LockpickManager>();
                     Debug.Log($"Setting LockpickManager from house {i}, lm null: {lm == null}");
                     nightCompleteTrigger.SetLockpickManager(lm);
+                    timerSystem.SetLockpickManager(lm);
                 }
             }
-
         }
     }
 }
