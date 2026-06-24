@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class MinigameState : MonoBehaviour
 {
-    public bool secondMinigameCompleted = false;
+    public bool secondMinigameCompleted = false; // tracker for timer system
 }

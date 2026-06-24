@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-
 public class VictimInteraction : MonoBehaviour
 {
     public enum VictimState { Idle, MaskOn, SampleTaken, MaskRemoved }
@@ -24,20 +23,18 @@ public class VictimInteraction : MonoBehaviour
     private void Update()
     {
         bool inRange = IsVictimInRange(out RaycastHit hit);
-
         UpdatePrompt(inRange);
-
         if (inRange && Input.GetKeyDown(interactKey))
             HandleInteract();
+    }
 
-         }
-
+    // advances victim state machine based on current state + equipped hotbar item (skalpelli vs anasthesia maski)
     private void HandleInteract()
     {
         switch (_state)
         {
             case VictimState.Idle:
-                if (hotbar.SelectedIndex == 0)
+                if (hotbar.SelectedIndex == 0) // anaesthetic equipped
                 {
                     _state = VictimState.MaskOn;
                     if (maskObject != null) maskObject.SetActive(true);
@@ -50,7 +47,7 @@ public class VictimInteraction : MonoBehaviour
                 break;
 
             case VictimState.MaskOn:
-                if (hotbar.SelectedIndex == 1)
+                if (hotbar.SelectedIndex == 1) // scalpel equipped
                 {
                     Debug.Log("Starting tracing minigame.");
                     tracingManager.Open();
@@ -70,6 +67,7 @@ public class VictimInteraction : MonoBehaviour
         }
     }
 
+    // called externally by TracingMinigameManager when tracing succeeds
     public void OnTracingCompleted()
     {
         _state = VictimState.SampleTaken;
@@ -79,13 +77,13 @@ public class VictimInteraction : MonoBehaviour
     private void UpdatePrompt(bool inRange)
     {
         if (promptText == null) return;
-
         if (!inRange)
         {
             promptText.text = "";
             return;
         }
 
+        // show context-sensitive prompt text based on state + equipped item
         promptText.text = _state switch
         {
             VictimState.Idle => hotbar.SelectedIndex == 0 ? "Press F to apply mask" : "Equip the anaesthetic first",
@@ -98,6 +96,7 @@ public class VictimInteraction : MonoBehaviour
 
     private bool IsVictimInRange(out RaycastHit hit)
     {
+        // cast ray from camera forward, check if it hit this object or one of its children directly
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         if (Physics.Raycast(ray, out hit, interactDistance))
             return hit.transform == transform || hit.transform.parent == transform;

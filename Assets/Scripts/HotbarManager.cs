@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class HotbarManager : MonoBehaviour
 {
     [Header("Items")]
@@ -11,17 +10,17 @@ public class HotbarManager : MonoBehaviour
 
     private GameObject[] _items;
     private int _selectedIndex = -1;
-
     public int SelectedIndex => _selectedIndex;
 
     private void Start()
     {
         _items = new GameObject[] { item1, item2 };
 
+        // hide all items at start
         foreach (var item in _items)
             if (item != null) item.SetActive(false);
 
-        SelectItem(0);
+        SelectItem(0); // start with first item equipped
     }
 
     private void Update()
@@ -32,13 +31,15 @@ public class HotbarManager : MonoBehaviour
 
     private void SelectItem(int index)
     {
-        if (_selectedIndex == index) return;
+        if (_selectedIndex == index) return; // already selected, do nothing
 
+        // hide previously selected item
         if (_selectedIndex >= 0 && _items[_selectedIndex] != null)
             _items[_selectedIndex].SetActive(false);
 
         _selectedIndex = index;
 
+        // show new item, parent it to hand anchor, reset local transform
         if (_items[_selectedIndex] != null)
         {
             _items[_selectedIndex].SetActive(true);

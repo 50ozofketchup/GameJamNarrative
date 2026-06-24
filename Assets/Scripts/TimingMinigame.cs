@@ -30,15 +30,16 @@ public class TimingMinigame : MonoBehaviour
     [SerializeField] private AudioClip missSound;
 
     private float _currentSpeed;
-    private float _direction = 1f;
+    private float _direction = 1f; // 1 = moving right, -1 = moving left
     private int _currentRound;
     private int _failures;
     private bool _gameActive;
-    private float _boxLeft;
-    private float _boxRight;
+    private float _boxLeft;  // leftmost x position needle can reach
+    private float _boxRight; // rightmost x position needle can reach
 
     public void StartGame()
     {
+        // calculate needle's movement bounds based on this panel's width, accounting for needle's own width
         RectTransform box = GetComponent<RectTransform>();
         float halfBox = box.rect.width / 2f;
         float halfNeedle = needle.rect.width / 2f;
@@ -64,6 +65,7 @@ public class TimingMinigame : MonoBehaviour
     {
         float newX = needle.anchoredPosition.x + _direction * _currentSpeed * Time.deltaTime;
 
+        // bounce off the edges
         if (newX >= _boxRight) { newX = _boxRight; _direction = -1f; }
         else if (newX <= _boxLeft) { newX = _boxLeft; _direction = 1f; }
 
@@ -77,11 +79,12 @@ public class TimingMinigame : MonoBehaviour
             PlaySound(hitSound);
             _currentRound++;
 
+            // completed all rounds -> success
             if (_currentRound >= totalRounds)
             {
                 _gameActive = false;
                 ShowResult("UNLOCKED!", Color.green);
-                Invoke(nameof(TriggerSuccess), 1f);
+                Invoke(nameof(TriggerSuccess), 1f); // delay so player sees the result text
                 return;
             }
 
@@ -93,11 +96,12 @@ public class TimingMinigame : MonoBehaviour
             PlaySound(missSound);
             _failures++;
 
+            // too many misses -> fail
             if (_failures >= maxFailures)
             {
                 _gameActive = false;
                 ShowResult("FAILED!", Color.red);
-                Invoke(nameof(TriggerFail), 1f);
+                Invoke(nameof(TriggerFail), 1f); // delay so player sees the result text
                 return;
             }
 
@@ -110,9 +114,11 @@ public class TimingMinigame : MonoBehaviour
 
     private void StartRound()
     {
+        // each round moves faster than the last
         _currentSpeed = initialSpeed + _currentRound * speedIncreasePerRound;
         _gameActive = true;
 
+        // randomize green zone position for this round
         float randomX = UnityEngine.Random.Range(greenZoneMinX, greenZoneMaxX);
         greenZone.anchoredPosition = new Vector2(randomX, greenZone.anchoredPosition.y);
 

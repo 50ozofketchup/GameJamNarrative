@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class TracingMinigameManager : MonoBehaviour
 {
     [SerializeField] private GameObject tracingPanel;
@@ -11,10 +10,13 @@ public class TracingMinigameManager : MonoBehaviour
     private void Start()
     {
         tracingPanel.SetActive(false);
+
+        // subscribe to minigame result events
         tracingMinigame.OnSuccess += HandleSuccess;
         tracingMinigame.OnFail += HandleFail;
     }
 
+    // called when player interacts to start tracing
     public void Open()
     {
         tracingPanel.SetActive(true);
@@ -26,6 +28,7 @@ public class TracingMinigameManager : MonoBehaviour
         Debug.Log("Tracing minigame opened.");
     }
 
+    // shared cleanup, hide panel and give player contorl back
     private void Close()
     {
         tracingPanel.SetActive(false);
@@ -50,6 +53,7 @@ public class TracingMinigameManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        // unsubscribe to avoid dangling references
         tracingMinigame.OnSuccess -= HandleSuccess;
         tracingMinigame.OnFail -= HandleFail;
     }

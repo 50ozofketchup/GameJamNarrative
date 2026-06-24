@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class NightCompleteTrigger : MonoBehaviour
 {
     [SerializeField] private string storySceneName = "StoryScene";
@@ -19,6 +18,8 @@ public class NightCompleteTrigger : MonoBehaviour
         bool harvestComplete = minigameState.secondMinigameCompleted;
 
         Debug.Log($"NightCompleteTrigger hit - doorUnlocked: {doorUnlocked}, harvestComplete: {harvestComplete}, lockpickManager null: {lockpickManager == null}");
+
+        // if player didn't unlock the door or didn't finish the harvest minigame, send to bad ending
         if (!doorUnlocked || !harvestComplete)
         {
             GameProgressionManager.Instance.currentMode = GameProgressionManager.StoryMode.BadEnding2;
@@ -26,6 +27,7 @@ public class NightCompleteTrigger : MonoBehaviour
             return;
         }
 
+        // otherwise, proceed to normal night outro
         GameProgressionManager.Instance.currentMode = GameProgressionManager.StoryMode.NightOutro;
         SceneTransition.Instance.LoadScene(storySceneName);
     }

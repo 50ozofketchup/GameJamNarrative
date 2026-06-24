@@ -1,10 +1,8 @@
 using UnityEngine;
-
 public class GameProgressionManager : MonoBehaviour
 {
     public enum StoryMode { Opening, NightOutro, BadEnding1, BadEnding2 }
-
-    public static GameProgressionManager Instance { get; private set; }
+    public static GameProgressionManager Instance { get; private set; } // singleton
 
     [Header("Opening")]
     public TextAsset[] openingSegments;
@@ -22,8 +20,9 @@ public class GameProgressionManager : MonoBehaviour
 
     [HideInInspector] public int currentNight = 1;
     [HideInInspector] public StoryMode currentMode = StoryMode.Opening;
-    [HideInInspector] public Vector3 badEnding1ReturnPosition;
+    [HideInInspector] public Vector3 badEnding1ReturnPosition; // where player respawns after bad ending 1
 
+    // returns the correct Ink segment array based on current story mode/night
     public TextAsset[] GetCurrentSegments()
     {
         return currentMode switch
@@ -46,6 +45,7 @@ public class GameProgressionManager : MonoBehaviour
 
     private void Awake()
     {
+        // enforce singleton, persist across scene loads
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
         DontDestroyOnLoad(gameObject);

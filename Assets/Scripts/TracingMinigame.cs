@@ -24,11 +24,11 @@ public class TracingMinigame : MonoBehaviour
     [SerializeField] private AudioClip drawingSound;
     [SerializeField] private AudioClip mistakeSound;
 
-    private Vector2[] _pathPoints;
-    private Image[] _pathDots;
-    private int _currentPointIndex = 0;
+    private Vector2[] _pathPoints;      // target points to trace, in local space of tracingArea
+    private Image[] _pathDots;          // visual dot for each path point
+    private int _currentPointIndex = 0; // next point player needs to reach
     private int _mistakes = 0;
-    private bool _active = false;
+    private bool _active = false;       // true once player has started tracing from point 0
     private bool _mouseHeld = false;
 
     public System.Action OnSuccess;
@@ -52,6 +52,7 @@ public class TracingMinigame : MonoBehaviour
     {
         if (_pathPoints == null) return;
 
+        // convert mouse position to local coordinates within the tracing area
         Vector2 mousePos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             tracingArea, Input.mousePosition, null, out mousePos);
@@ -61,6 +62,7 @@ public class TracingMinigame : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            // only start tracing if click lands on the starting point
             if (!_active && _currentPointIndex == 0 &&
                 Vector2.Distance(mousePos, _pathPoints[0]) <= tolerance)
                 _active = true;
@@ -72,7 +74,7 @@ public class TracingMinigame : MonoBehaviour
         {
             _mouseHeld = false;
             StopDrawingSound();
-            if (_active) RegisterMistake();
+            if (_active) RegisterMistake(); // letting go mid-trace counts as a mistake
         }
 
         if (!_active || !_mouseHeld) return;
@@ -83,6 +85,7 @@ public class TracingMinigame : MonoBehaviour
 
         if (distToNext <= tolerance)
         {
+            // reached the next point on the path
             if (_pathDots[_currentPointIndex] != null)
                 _pathDots[_currentPointIndex].color = completedColor;
 
@@ -98,6 +101,7 @@ public class TracingMinigame : MonoBehaviour
         }
         else
         {
+            // check if player has strayed too far from the path (relative to the last completed point)
             float distToPrev = _currentPointIndex > 0
                 ? Vector2.Distance(mousePos, _pathPoints[_currentPointIndex - 1])
                 : 0f;
@@ -120,6 +124,7 @@ public class TracingMinigame : MonoBehaviour
         audioSource.Stop();
     }
 
+    // resets progress back to the start and counts a strike against maxMistakes
     private void RegisterMistake()
     {
         _mistakes++;
@@ -131,6 +136,7 @@ public class TracingMinigame : MonoBehaviour
         if (audioSource != null && mistakeSound != null)
             audioSource.PlayOneShot(mistakeSound);
 
+        // reset all dot colors back to default, except re-highlight the start point
         foreach (var dot in _pathDots)
             if (dot != null) dot.color = pathColor;
 
@@ -144,6 +150,7 @@ public class TracingMinigame : MonoBehaviour
             OnFail?.Invoke();
     }
 
+    // spawns a visual dot UI element for every point in the path
     private void DrawPath()
     {
         for (int i = 0; i < _pathPoints.Length; i++)
@@ -154,7 +161,7 @@ public class TracingMinigame : MonoBehaviour
             Image img = dotObj.GetComponent<Image>();
             img.color = i == 0 ? startPointColor : pathColor;
             img.rectTransform.sizeDelta = i == 0
-                ? new Vector2(dotSize * 1.8f, dotSize * 1.8f)
+                ? new Vector2(dotSize * 1.8f, dotSize * 1.8f) // start point dot is bigger
                 : new Vector2(dotSize, dotSize);
             img.rectTransform.anchoredPosition = _pathPoints[i];
 
@@ -162,6 +169,7 @@ public class TracingMinigame : MonoBehaviour
         }
     }
 
+    // destroys previously spawned path dots
     private void ClearDots()
     {
         if (_pathDots == null) return;
@@ -175,6 +183,7 @@ public class TracingMinigame : MonoBehaviour
         progressIndicator.fillAmount = (float)_currentPointIndex / _pathPoints.Length;
     }
 
+    // generates points around an ellipse ("O" muoto) to trace
     private Vector2[] GenerateOPath()
     {
         Vector2[] points = new Vector2[totalPoints];

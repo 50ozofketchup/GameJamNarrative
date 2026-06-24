@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class LockpickManager : MonoBehaviour
 {
     [SerializeField] private GameObject minigamePanel;
@@ -8,23 +7,26 @@ public class LockpickManager : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private TimerSystem timerSystem;
     [SerializeField] private Door door;
+
     [Header("Audio")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip doorOpenSound;
 
     private CharacterController _characterController;
     private bool _locked = true;
-
     public bool IsLocked => _locked;
 
     private void Start()
     {
         _characterController = playerMovement.GetComponent<CharacterController>();
         minigamePanel.SetActive(false);
+
+        // subscribe to minigame result events
         minigame.OnSuccess += HandleSuccess;
         minigame.OnFail += HandleFail;
     }
 
+    // called when player interacts with the locked door
     public void Open()
     {
         minigamePanel.SetActive(true);
@@ -35,6 +37,7 @@ public class LockpickManager : MonoBehaviour
         minigame.StartGame();
     }
 
+    // re-locks the door (e.g. for retry / next night)
     public void ResetLock()
     {
         _locked = true;
@@ -49,14 +52,16 @@ public class LockpickManager : MonoBehaviour
     {
         _locked = false;
         door.Open();
-        Close();
+        Close(); // close minigame UI, restore player control
         timerSystem.StartTimer(playerMovement.transform.position, _characterController);
+
         if (audioSource != null && doorOpenSound != null)
             audioSource.PlayOneShot(doorOpenSound);
     }
 
-    private void HandleFail() => Close();
+    private void HandleFail() => Close(); // failed attempt, just close minigame UI
 
+    // shared cleanup: hide minigame UI and give player control back
     private void Close()
     {
         minigamePanel.SetActive(false);
@@ -68,6 +73,7 @@ public class LockpickManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        // unsubscribe to avoid dangling references
         minigame.OnSuccess -= HandleSuccess;
         minigame.OnFail -= HandleFail;
     }
